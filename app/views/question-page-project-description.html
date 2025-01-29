@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block beforeContent %}
+  {{ backLink({
+    "href": "index",
+    "text": "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="#" method="post" class="form">
+
+        {{ textarea({
+          name: "Project Description",
+          id: "project-description",
+          label: {
+            text: "Can you provide more detail of your project?"
+          },
+          hint: {
+            text: "Do not include personal or financial information, for example, your National Insurance number or credit card details."
+          }
+        }) }}
+
+        {% from 'select/macro.njk' import select %}
+
+        {{ select({
+          id: "select-usecase",
+          name: "select-usecase",
+          label: {
+            text: "Select your use case in SDE/CDP."
+          },
+          items: [
+            {
+              value: inference-only,
+              text: "Inference Only",
+              selected: true
+            },
+            {
+              value: retrain-only,
+              text: "Retrain Only"
+            }
+            
+          ]
+        }) }}
+
+
+        <p>(See the <a href="https://service-manual.nhs.uk/design-system/components">NHS digital service manual</a> for examples.)</p>
+
+        {{ button({
+          href: "question-page-algothrism",
+          text: "Save and continue",
+          preventDoubleClick: true
+        }) }}
+        
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

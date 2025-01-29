@@ -1,0 +1,102 @@
+{% extends 'layout.html' %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageTitle %}
+  Question page
+{% endblock %}
+
+{% block beforeContent %}
+  {{ backLink({
+    "href": "question-page-project-description",
+    "text": "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <form action="#" method="post" class="form">
+
+        {% from 'select/macro.njk' import select %}
+
+        {{ select({
+          id: "select-algorithm",
+          name: "select-algorithm",
+          label: {
+            text: "Select your algorithm used in the project."
+          },
+          items: [
+            {
+              value: linear-regression,
+              text: "Linear Regression"
+            },
+            {
+              value: transformer,
+              text: "Transformer",
+              selected: true
+            },
+            {
+              value: lstm,
+              text: "LSTM"
+            },
+            {
+              value: cnn,
+              text: "CNN"
+            },
+            {
+              value: rnn,
+              text: "RNN"
+            },
+            {
+              value: gan,
+              text: "GAN"
+            },
+            {
+              value: bert,
+              text: "BERT"
+            },
+            {
+              value: other,
+              text: "Other"
+            }
+            
+          ]
+        }) }}
+
+        {{ select({
+          id: "select-datetype",
+          name: "select-datetype",
+          label: {
+            text: "Your form of data"
+          },
+          items: [
+            {
+              value: instance-level,
+              text: "Instance Level"
+            },
+            {
+              value: aggregated-level,
+              text: "Aggregated Level",
+              selected: true
+            },
+            {
+              value: free-text,
+              text: "Free Text Data"
+            }
+          ]
+        }) }}
+
+        {{ button({
+          href: "question-page-project-description",
+          text: "Save and continue",
+          preventDoubleClick: true
+        }) }}
+        
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
